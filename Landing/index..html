@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPEVERSE: Where Fashion Meets the Future</title>
+
+    <!-- AOS Library for Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            background: url('hero.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: heroParallax 20s infinite linear;
+        }
+
+        /* Parallax effect for the hero image */
+        @keyframes heroParallax {
+            0% { background-position: center top; }
+            50% { background-position: center bottom; }
+            100% { background-position: center top; }
+        }
+
+        .hero-text {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: textReveal 3s ease-in-out, waveEffect 2s ease-in-out infinite;
+        }
+
+        /* Text Reveal Effect */
+        @keyframes textReveal {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Waving Effect for Text */
+        @keyframes waveEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Title Section */
+        .title-section {
+            font-size: 38px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            color: #000;
+            padding: 30px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            animation: fadeInTitle 1s ease-out, colorChange 5s infinite alternate;
+        }
+
+        /* Color change for Title */
+        @keyframes colorChange {
+            0% { color: #ff00ff; }
+            100% { color: #00ffff; }
+        }
+
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .title-section:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        /* Space Background Animation */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('space-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+            animation: spaceMovement 30s infinite linear;
+        }
+
+        @keyframes spaceMovement {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        /* Astronaut Animation */
+        .astronaut {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            background: url('astronaut.png') no-repeat center center/contain;
+            animation: astronautMove 15s infinite ease-in-out;
+        }
+
+        @keyframes astronautMove {
+            0% { transform: translate(-50%, -50%) translateX(0); }
+            50% { transform: translate(-50%, -50%) translateX(200px); }
+            100% { transform: translate(-50%, -50%) translateX(-200px); }
+        }
+
+        /* Product Section */
+        .products {
+            padding: 40px;
+        }
+
+        .category {
+            margin-bottom: 40px;
+        }
+
+        .category h2 {
+            font-size: 28px;
+            color: #00ffff;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Flip Effect */
+        .product-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product {
+            width: 250px;
+            height: 350px;
+            perspective: 1000px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 15px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .product-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .product:hover .product-inner {
+            transform: rotateY(180deg);
+        }
+
+        .product-front, .product-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-front {
+            background: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .product-front img {
+            width: 90%;
+            border-radius: 10px;
+        }
+
+        .product-back {
+            background: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotateY(180deg);
+            padding: 20px;
+        }
+
+        .product-back p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .buy-button {
+            background: #ff00ff;
+            color: #000;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .buy-button:hover {
+            background: #00ffff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            background-color: #222;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 60px 20px;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-section h2 {
+            font-size: 36px;
+            color: #00ffff;
+            margin-bottom: 20px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .about-text {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: fadeInUp 2s ease-out;
+        }
+        
+
+        /* Parallax Background for About Section */
+        .about-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('fashion-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+            animation: aboutParallax 30s infinite linear;
+        }
+
+        @keyframes aboutParallax {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+
+    <!-- Astronaut Animation -->
+    <div class="astronaut"></div>
+
+    <!-- Hero Image -->
+    <section class="hero">
+        <div class="hero-text">🔥 The Future of Fashion is Here 🔥</div>
+    </section>
+
+    <!-- Title Below Hero Image -->
+    <section class="title-section">
+        HYPEVERSE: Where Fashion Meets the Future
+    </section>
+
+    <!-- Products Section -->
+    <section id="shop" class="products">
+        <div class="category"><h2 class="aos-fade-in" data-aos="fade-up">🚀 Smart Fabrics & LED Integration</h2><div class="product-list" id="category1"></div></div>
+        <div class="category"><h2 class="aos-fade-in" data-aos="fade-up">🔥 What's Trending</h2><div class="product-list" id="category2"></div></div>
+        <div class="category"><h2 class="aos-fade-in" data-aos="fade-up">🌌 Futuristic Fits</h2><div class="product-list" id="category3"></div></div>
+        <div class="category"><h2 class="aos-fade-in" data-aos="fade-up">🕶 Streetwear Vibes</h2><div class="product-list" id="category4"></div></div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="about-background"></div>
+        <h2>💥 Be the Trendsetter</h2>
+        <p class="about-text">At HYPEVERSE, we believe in empowering the Gen Z generation to express themselves through cutting-edge fashion that blends technology and style. Our clothes are more than just outfits—they're a statement. With smart fabrics, LED integrations, and futuristic designs, we aim to inspire you to be bold, stand out, and lead the way in fashion!</p>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 HYPEVERSE. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        const productData = {
+            category1: [
+                { name: "Sprinkle", price: "₹33,499", img: "sprinkle.png" },
+                { name: "Spark", price: "₹22,999", img: "Spark.png" },
+                { name: "Sparkle", price: "₹23,899", img: "Sparkle.png" },
+                { name: "Sbow", price: "₹22,599", img: "Sbow.png" }
+            ],
+            category2: [
+                { name: "Haute Couture Suit", price: "₹34,299", img: "Haute.png" },
+                { name: "Sleek Leather pants", price: "₹31,199", img: "sleek.png" },
+                { name: "Elegance", price: "₹35,999", img: "ele.png" },
+                { name: "Muglar", price: "₹33,299", img: "Muglar.png" }
+            ],
+            category3: [
+                { name: "Holographic top", price: "₹4,799", img: "holo.png" },
+                { name: "Mild ", price: "₹32,499", img: "mild.png" },
+                { name: "Casual", price: "₹25,899", img: "casu.png" },
+                { name: "Meta", price: "₹10,599", img: "meta.png" }
+            ],
+            category4: [
+                { name: "Urban", price: "₹22,799", img: "urban.png" },
+                { name: "Street", price: "₹34,999", img: "street.png" },
+                { name: "Hype ", price: "₹32,499", img: "Hype.png" },
+                { name: "Minee", price: "₹24,299", img: "mine.png" }
+            ]
+        };
+
+        Object.keys(productData).forEach(category => {
+            const container = document.getElementById(category);
+            productData[category].forEach(product => {
+                container.innerHTML += `
+
+                    <div class="product aos-fade-in" data-aos="fade-up">
+                        <div class="product-inner">
+                            <div class="product-front"><img src="${product.img}" alt="Product"></div>
+                            <div class="product-back"><p>${product.name}</p><p>${product.price}</p><button class="buy-button">Buy Now</button></div>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    </script>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
